@@ -42,6 +42,7 @@ It visualizes core backend concepts such as:
 - Microsoft.Data.Sqlite
 
 ## Screenshots
+<img width=60% height=60% alt="{B8F00BF1-B714-44E3-930A-98CABFC580C9}" src="https://github.com/user-attachments/assets/3e65834a-94ec-4dbb-b68f-1f0c9877b175" />
 
 
 ## How to Run
