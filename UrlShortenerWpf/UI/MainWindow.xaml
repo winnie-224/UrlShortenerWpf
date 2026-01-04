@@ -1,0 +1,115 @@
+﻿<Window x:Class="UrlShortenerWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="URL Shortener - System Design Simulator"
+        Height="600"
+        Width="800">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Shorten -->
+            <RowDefinition Height="Auto"/>
+            <!-- Result -->
+            <RowDefinition Height="Auto"/>
+            <!-- Resolve -->
+            <RowDefinition Height="Auto"/>
+            <!-- Metrics -->
+            <RowDefinition Height="*"/>
+            <!-- Shards -->
+        </Grid.RowDefinitions>
+
+        <!-- Shorten URL -->
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,0,0,12">
+            <TextBox x:Name="LongUrlBox"
+                     Width="450"
+                     Height="30"
+                     Margin="0,0,12,0"
+                     ToolTip="Enter long URL"/>
+            <Button Content="Shorten"
+                    Width="120"
+                    Height="30"
+                    Click="OnShortenClicked"/>
+        </StackPanel>
+
+        <!-- Shorten Result -->
+        <TextBlock x:Name="ShortUrlResult"
+                   Grid.Row="1"
+                   FontWeight="Bold"
+                   Margin="0,0,0,12"/>
+
+        <!-- Resolve URL -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="0,0,0,16">
+            <TextBox x:Name="ShortKeyBox"
+                     Width="200"
+                     Height="30"
+                     Margin="0,0,12,0"
+                     ToolTip="Enter short key"/>
+            <Button Content="Resolve"
+                    Width="120"
+                    Height="30"
+                    Click="OnResolveClicked"/>
+        </StackPanel>
+
+        <!-- System Metrics -->
+        <GroupBox Grid.Row="3"
+                  Header="System Metrics"
+                  Margin="0,0,0,16">
+            <Grid Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Cache Metrics -->
+                <StackPanel>
+                    <TextBlock Text="Cache Metrics"
+                               FontWeight="Bold"
+                               Margin="0,0,0,6"/>
+                    <TextBlock x:Name="CacheHitsText"/>
+                    <TextBlock x:Name="CacheMissesText"/>
+                </StackPanel>
+
+                <!-- Service Nodes -->
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Service Nodes"
+                               FontWeight="Bold"
+                               Margin="0,0,0,6"/>
+                    <ItemsControl x:Name="NodeMetrics"/>
+                </StackPanel>
+
+                <!-- Cache Visualization -->
+                <StackPanel Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Margin="0,16,0,0">
+                    <TextBlock Text="Cache State (LRU Order)"
+                               FontWeight="Bold"
+                               Margin="0,0,0,6"/>
+                    <ItemsControl x:Name="CacheItems"
+                                  Margin="0,0,0,6"/>
+                    <TextBlock x:Name="EvictionText"
+                               Foreground="Red"
+                               FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- Shard Data -->
+        <GroupBox Grid.Row="4"
+                  Header="Shard Data">
+            <ScrollViewer Height="300"
+                          Margin="12">
+                <ItemsControl x:Name="ShardDataView"/>
+            </ScrollViewer>
+        </GroupBox>
+
+    </Grid>
+</Window>
